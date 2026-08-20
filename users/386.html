@@ -4,7 +4,7 @@
   <title>2026 eCTF</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="/files/da4ed67c15a9d951d7b0d15ea24ecd11/eCTF_icon_sm_white.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../files/da4ed67c15a9d951d7b0d15ea24ecd11/eCTF_icon_sm_white.png" type="image/x-icon">
 
   
 
@@ -18,7 +18,7 @@
 
   <script type="text/javascript">
       window.init = {
-          'urlRoot': "",
+          'urlRoot': "..",
           'csrfNonce': "380cbdd534bf6be938cfa2cca4b41535252e275d587b3fffdb2757d61dec3342",
           'userMode': "users",
           'userId': 333,
@@ -31,8 +31,8 @@
           'end': 1776268800,
           'themeSettings': null,
           'eventSounds': [
-            "/themes/core/static/sounds/notification.webm",
-            "/themes/core/static/sounds/notification.mp3",
+            "../themes/core/static/sounds/notification.webm",
+            "../themes/core/static/sounds/notification.mp3",
           ],
       }
   </script>
@@ -47,11 +47,11 @@
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
   <div class="container">
-    <a href="/" class="navbar-brand">
+    <a href="../index.html" class="navbar-brand">
       
         <img
             class="img-responsive ctf_logo"
-            src="/files/55908d261e2bf57c28b6dfbcfbe0fc81/eCTF_wordmark_white.png"
+            src="../files/55908d261e2bf57c28b6dfbcfbe0fc81/eCTF_wordmark_white.png"
             alt="2026 eCTF"
             height="25"
         >
@@ -71,7 +71,7 @@
 
         
           <li class="nav-item">
-            <a class="nav-link" href="/users">
+            <a class="nav-link" href="../users.html">
               Users
             </a>
           </li>
@@ -81,14 +81,14 @@
 
         
           <li class="nav-item">
-            <a class="nav-link" href="/scoreboard">
+            <a class="nav-link" href="../scoreboard.html">
               Scoreboard
             </a>
           </li>
         
 
         <li class="nav-item">
-          <a class="nav-link" href="/challenges">
+          <a class="nav-link" href="../challenges.html">
             Challenges
           </a>
         </li>
@@ -102,7 +102,7 @@
           
 
           <li class="nav-item">
-            <a class="nav-link" href="/notifications">
+            <a class="nav-link" href="../notifications.html">
               <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Notifications">
                 <i class="fas fa-bell d-none d-md-inline d-lg-none"></i>
               </span>
@@ -117,7 +117,7 @@
           
 
           <li class="nav-item">
-            <a class="nav-link" href="/user">
+            <a class="nav-link" href="../user.html">
               <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Profile">
                 <i class="fas fa-user-circle d-none d-md-inline d-lg-none"></i>
               </span>
@@ -129,7 +129,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/settings">
+            <a class="nav-link" href="../settings.html">
               <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Settings">
                 <i class="fas fa-cogs d-none d-md-inline d-lg-none"></i>
               </span>
@@ -141,7 +141,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/logout">
+            <a class="nav-link" href="../login.html">
               <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout">
                 <i class="fas fa-sign-out-alt d-none d-md-inline d-lg-none"></i>
               </span>
@@ -416,7 +416,7 @@
             
               <tr>
                 <td>
-                  <a href="/challenges#Testing Service-864">
+                  <a href="../challenges.html#Testing Service-864">
                     Testing Service
                   </a>
                 </td>
@@ -429,7 +429,7 @@
             
               <tr>
                 <td>
-                  <a href="/challenges#Testing Service - On Time-863">
+                  <a href="../challenges.html#Testing Service - On Time-863">
                     Testing Service - On Time
                   </a>
                 </td>
@@ -442,7 +442,7 @@
             
               <tr>
                 <td>
-                  <a href="/challenges#Read the Rules-860">
+                  <a href="../challenges.html#Read the Rules-860">
                     Read the Rules
                   </a>
                 </td>
@@ -455,7 +455,7 @@
             
               <tr>
                 <td>
-                  <a href="/challenges#Boot the Reference-847">
+                  <a href="../challenges.html#Boot the Reference-847">
                     Boot the Reference
                   </a>
                 </td>
@@ -468,7 +468,7 @@
             
               <tr>
                 <td>
-                  <a href="/challenges#Team Photo-1625">
+                  <a href="../challenges.html#Team Photo-1625">
                     Team Photo
                   </a>
                 </td>
@@ -481,7 +481,7 @@
             
               <tr>
                 <td>
-                  <a href="/challenges#Design Document - On Time-852">
+                  <a href="../challenges.html#Design Document - On Time-852">
                     Design Document - On Time
                   </a>
                 </td>
@@ -494,7 +494,7 @@
             
               <tr>
                 <td>
-                  <a href="/challenges#Read the Rules - On Time-859">
+                  <a href="../challenges.html#Read the Rules - On Time-859">
                     Read the Rules - On Time
                   </a>
                 </td>
@@ -588,7 +588,7 @@
 >
   <small>
     <strong>Email Unconfirmed</strong><br>
-    <span>To confirm your email address please <a href="/confirm?flow=init">click here</a>.</span>
+    <span>To confirm your email address please <a href="#">click here</a>.</span>
   </small>
   <button type="button" class="btn-close" @click="localStorage.setItem('remind_email_verify', window.init.userId); $el.parentElement.style.display = 'none';" aria-label="Close"></button>
 </div>
