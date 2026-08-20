@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>2026 eCTF</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="/files/da4ed67c15a9d951d7b0d15ea24ecd11/eCTF_icon_sm_white.png" type="image/x-icon">
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.cloud.ctfd.io/ectf/themes/core/static/assets/main.e9ec7884.css">
+  
+
+  
+
+  <script  src="https://cdn.cloud.ctfd.io/ectf/themes/core/static/assets/color_mode_switcher.52334129.js"></script>
+
+  <script type="text/javascript">
+      window.init = {
+          'urlRoot': "",
+          'csrfNonce': "380cbdd534bf6be938cfa2cca4b41535252e275d587b3fffdb2757d61dec3342",
+          'userMode': "users",
+          'userId': 333,
+          'userName': "Dakota State University - DSU",
+          'userEmail': "dsu@ectf.fake",
+          'userVerified': true,
+          'teamId': null,
+          'teamName': null,
+          'start': 1768410000,
+          'end': 1776268800,
+          'themeSettings': null,
+          'eventSounds': [
+            "/themes/core/static/sounds/notification.webm",
+            "/themes/core/static/sounds/notification.mp3",
+          ],
+      }
+  </script>
+
+  <style id="theme-color">
+:root {--theme-color: #005b94;}
+.navbar{background-color: var(--theme-color) !important;}
+.jumbotron{background-color: var(--theme-color) !important;}
+</style>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a href="/" class="navbar-brand">
+      
+        <img
+            class="img-responsive ctf_logo"
+            src="/files/55908d261e2bf57c28b6dfbcfbe0fc81/eCTF_wordmark_white.png"
+            alt="2026 eCTF"
+            height="25"
+        >
+      
+    </a>
+
+    <button
+        class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#base-navbars"
+        aria-controls="base-navbars" aria-expanded="false" aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="base-navbars">
+      <ul class="navbar-nav me-auto">
+        
+
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/users">
+              Users
+            </a>
+          </li>
+
+          
+        
+
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/scoreboard">
+              Scoreboard
+            </a>
+          </li>
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/challenges">
+            Challenges
+          </a>
+        </li>
+      </ul>
+
+      <hr class="d-sm-flex d-md-flex d-lg-none">
+
+      <ul class="navbar-nav ms-md-auto d-block d-sm-flex d-md-flex">
+        
+
+          
+
+          <li class="nav-item">
+            <a class="nav-link" href="/notifications">
+              <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Notifications">
+                <i class="fas fa-bell d-none d-md-inline d-lg-none"></i>
+              </span>
+              <span class="d-sm-inline d-md-none d-lg-inline">
+                  <i class="fas fa-bell pe-1"></i>
+                  <span x-data x-show="$store.unread_count > 0" x-text="$store.unread_count" class="badge rounded-pill bg-danger badge-notification"></span>
+                  Notifications
+              </span>
+            </a>
+          </li>
+
+          
+
+          <li class="nav-item">
+            <a class="nav-link" href="/user">
+              <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Profile">
+                <i class="fas fa-user-circle d-none d-md-inline d-lg-none"></i>
+              </span>
+              <span class="d-sm-inline d-md-none d-lg-inline">
+                <i class="fas fa-user-circle pe-1"></i>
+                Profile
+              </span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/settings">
+              <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Settings">
+                <i class="fas fa-cogs d-none d-md-inline d-lg-none"></i>
+              </span>
+              <span class="d-sm-inline d-md-none d-lg-inline">
+                <i class="fas fa-cogs pe-1"></i>
+                Settings
+              </span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">
+              <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout">
+                <i class="fas fa-sign-out-alt d-none d-md-inline d-lg-none"></i>
+              </span>
+              <span class="d-sm-inline d-md-none d-lg-inline">
+                <i class="fas fa-sign-out-alt pe-1"></i><span class="d-lg-none">
+                  Logout
+                </span>
+              </span>
+            </a>
+          </li>
+        
+
+        <li class="nav-item dropdown">
+          <button class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-language d-none d-md-inline"></i>
+            <span class="d-sm-inline d-md-none">
+              <i class="fas fa-language pe-1"></i>
+              Change language
+            </span>
+          </button>
+          <form x-data="LanguageForm">
+            <ul class="dropdown-menu dropdown-menu-end">
+              
+              <li>
+                  <span class="dropdown-item bg-primary text-white" @click="set" value="en">
+                    English
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="de">
+                    Deutsch
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="pl">
+                    Polski
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="es">
+                    Español
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="ar">
+                    اَلْعَرَبِيَّةُ
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="zh_CN">
+                    简体中文
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="zh_TW">
+                    繁體中文
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="fr">
+                    Français
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="ko">
+                    한국어
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="ru">
+                    русский язык
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="pt_BR">
+                    Português do Brasil
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="sk">
+                    Slovenský jazyk
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="ja">
+                    日本語
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="it">
+                    Italiano
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="vi">
+                    tiếng Việt
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="ca">
+                    Català
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="el">
+                    Ελληνικά
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="fi">
+                    Suomi
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="ro">
+                    Română
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="sl">
+                    Slovenščina
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="sv">
+                    Svenska
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="he">
+                    עברית
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="uz">
+                    oʻzbekcha
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="sr">
+                    Српски језик
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="no">
+                    Norsk
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="hr">
+                    Hrvatski
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="cs">
+                    Čeština
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="id">
+                    Bahasa Indonesia
+                  </span>
+              </li>
+            </ul>
+          </form>
+        </li>
+
+        <li class="nav-item">
+          <button class="nav-link theme-switch" type="button">
+            <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Toggle theme">
+              <i class="fas fa-sun d-none d-md-inline"></i>
+            </span>
+            <span class="d-sm-inline d-md-none">
+              <i class="fas fa-sun pe-1"></i>
+              Toggle theme
+            </span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main role="main">
+  
+  <div class="jumbotron">
+    <div class="container">
+      <h1>
+        Settings
+      </h1>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-3 offset-md-1 mb-3 mb-md-0">
+        <div class="nav flex-column nav-pills" role="tablist">
+          <button
+              class="nav-link active" id="settings-profile-tab" data-bs-toggle="pill"
+              data-bs-target="#profile" role="tab"
+          >Profile
+          </button>
+          <button
+              class="nav-link" id="settings-tokens-tab" data-bs-toggle="pill" data-bs-target="#tokens"
+              role="tab"
+          >Access Tokens
+          </button>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="tab-content" id="v-pills-tabContent">
+          <div class="tab-pane fade show active" id="profile" role="tabpanel">
+            <div>
+  
+
+  
+</div>
+
+            
+              <form
+                  method="post" accept-charset="utf-8" autocomplete="off" role="form"
+                  x-data="SettingsForm"
+                  @submit.prevent="updateProfile()"
+                  class="form-horizontal"
+              >
+
+                <div class="mb-3">
+                  <b><label class="form-label" for="name">User Name</label></b>
+                  <input class="form-control" id="name" name="name" type="text" value="Dakota State University - DSU">
+                </div>
+
+                <div class="mb-3">
+                  <b><label class="form-label" for="email">Email</label></b>
+                  <input class="form-control" id="email" name="email" type="text" value="dsu@ectf.fake">
+                </div>
+
+                <div class="mb-3">
+                  <b><label class="form-label" for="language">Language</label></b>
+                  <select class="form-select" id="language" name="language" value="None"><option value=""></option><option value="en">English</option><option value="de">Deutsch</option><option value="pl">Polski</option><option value="es">Español</option><option value="ar">اَلْعَرَبِيَّةُ</option><option value="zh_CN">简体中文</option><option value="zh_TW">繁體中文</option><option value="fr">Français</option><option value="ko">한국어</option><option value="ru">русский язык</option><option value="pt_BR">Português do Brasil</option><option value="sk">Slovenský jazyk</option><option value="ja">日本語</option><option value="it">Italiano</option><option value="vi">tiếng Việt</option><option value="ca">Català</option><option value="el">Ελληνικά</option><option value="fi">Suomi</option><option value="ro">Română</option><option value="sl">Slovenščina</option><option value="sv">Svenska</option><option value="he">עברית</option><option value="uz">oʻzbekcha</option><option value="sr">Српски језик</option><option value="no">Norsk</option><option value="hr">Hrvatski</option><option value="cs">Čeština</option><option value="id">Bahasa Indonesia</option></select>
+                </div>
+
+                <hr>
+
+                <div class="mb-3">
+                  <b><label class="form-label" for="confirm">Current Password</label></b>
+                  <input class="form-control" id="confirm" name="confirm" type="password" value="">
+                </div>
+                <div class="mb-3">
+                  <b><label class="form-label" for="password">Password</label></b>
+                  <input class="form-control" id="password" name="password" type="password" value="">
+                </div>
+
+                <hr>
+
+                <div class="mb-3">
+                  <b><label class="form-label" for="affiliation">Affiliation</label></b>
+                  <input class="form-control" id="affiliation" name="affiliation" type="text" value="">
+                </div>
+                <div class="mb-3">
+                  <b><label class="form-label" for="website">Website</label></b>
+                  <input class="form-control" id="website" name="website" type="url" value="">
+                </div>
+                <div class="mb-3">
+                  <b><label class="form-label" for="country">Country</label></b>
+                  <select class="form-select" id="country" name="country" value="US"><option value=""></option><option value="AF">Afghanistan</option><option value="AX">Åland Islands</option><option value="AL">Albania</option><option value="DZ">Algeria</option><option value="AS">American Samoa</option><option value="AD">Andorra</option><option value="AO">Angola</option><option value="AI">Anguilla</option><option value="AQ">Antarctica</option><option value="AG">Antigua &amp; Barbuda</option><option value="AR">Argentina</option><option value="AM">Armenia</option><option value="AW">Aruba</option><option value="AC">Ascension Island</option><option value="AU">Australia</option><option value="AT">Austria</option><option value="AZ">Azerbaijan</option><option value="BS">Bahamas</option><option value="BH">Bahrain</option><option value="BD">Bangladesh</option><option value="BB">Barbados</option><option value="BY">Belarus</option><option value="BE">Belgium</option><option value="BZ">Belize</option><option value="BJ">Benin</option><option value="BM">Bermuda</option><option value="BT">Bhutan</option><option value="BO">Bolivia</option><option value="BA">Bosnia &amp; Herzegovina</option><option value="BW">Botswana</option><option value="BR">Brazil</option><option value="IO">British Indian Ocean Territory</option><option value="VG">British Virgin Islands</option><option value="BN">Brunei</option><option value="BG">Bulgaria</option><option value="BF">Burkina Faso</option><option value="BI">Burundi</option><option value="KH">Cambodia</option><option value="CM">Cameroon</option><option value="CA">Canada</option><option value="IC">Canary Islands</option><option value="CV">Cape Verde</option><option value="BQ">Caribbean Netherlands</option><option value="KY">Cayman Islands</option><option value="CF">Central African Republic</option><option value="EA">Ceuta &amp; Melilla</option><option value="TD">Chad</option><option value="CL">Chile</option><option value="CN">China</option><option value="CX">Christmas Island</option><option value="CC">Cocos (Keeling) Islands</option><option value="CO">Colombia</option><option value="KM">Comoros</option><option value="CG">Congo - Brazzaville</option><option value="CD">Congo - Kinshasa</option><option value="CK">Cook Islands</option><option value="CR">Costa Rica</option><option value="CI">Côte d’Ivoire</option><option value="HR">Croatia</option><option value="CU">Cuba</option><option value="CW">Curaçao</option><option value="CY">Cyprus</option><option value="CZ">Czechia</option><option value="DK">Denmark</option><option value="DG">Diego Garcia</option><option value="DJ">Djibouti</option><option value="DM">Dominica</option><option value="DO">Dominican Republic</option><option value="EC">Ecuador</option><option value="EG">Egypt</option><option value="SV">El Salvador</option><option value="GQ">Equatorial Guinea</option><option value="ER">Eritrea</option><option value="EE">Estonia</option><option value="ET">Ethiopia</option><option value="EZ">Eurozone</option><option value="FK">Falkland Islands</option><option value="FO">Faroe Islands</option><option value="FJ">Fiji</option><option value="FI">Finland</option><option value="FR">France</option><option value="GF">French Guiana</option><option value="PF">French Polynesia</option><option value="TF">French Southern Territories</option><option value="GA">Gabon</option><option value="GM">Gambia</option><option value="GE">Georgia</option><option value="DE">Germany</option><option value="GH">Ghana</option><option value="GI">Gibraltar</option><option value="GR">Greece</option><option value="GL">Greenland</option><option value="GD">Grenada</option><option value="GP">Guadeloupe</option><option value="GU">Guam</option><option value="GT">Guatemala</option><option value="GG">Guernsey</option><option value="GN">Guinea</option><option value="GW">Guinea-Bissau</option><option value="GY">Guyana</option><option value="HT">Haiti</option><option value="HN">Honduras</option><option value="HK">Hong Kong SAR China</option><option value="HU">Hungary</option><option value="IS">Iceland</option><option value="IN">India</option><option value="ID">Indonesia</option><option value="IR">Iran</option><option value="IQ">Iraq</option><option value="IE">Ireland</option><option value="IM">Isle of Man</option><option value="IL">Israel</option><option value="IT">Italy</option><option value="JM">Jamaica</option><option value="JP">Japan</option><option value="JE">Jersey</option><option value="JO">Jordan</option><option value="KZ">Kazakhstan</option><option value="KE">Kenya</option><option value="KI">Kiribati</option><option value="XK">Kosovo</option><option value="KW">Kuwait</option><option value="KG">Kyrgyzstan</option><option value="LA">Laos</option><option value="LV">Latvia</option><option value="LB">Lebanon</option><option value="LS">Lesotho</option><option value="LR">Liberia</option><option value="LY">Libya</option><option value="LI">Liechtenstein</option><option value="LT">Lithuania</option><option value="LU">Luxembourg</option><option value="MO">Macau SAR China</option><option value="MK">Macedonia</option><option value="MG">Madagascar</option><option value="MW">Malawi</option><option value="MY">Malaysia</option><option value="MV">Maldives</option><option value="ML">Mali</option><option value="MT">Malta</option><option value="MH">Marshall Islands</option><option value="MQ">Martinique</option><option value="MR">Mauritania</option><option value="MU">Mauritius</option><option value="YT">Mayotte</option><option value="MX">Mexico</option><option value="FM">Micronesia</option><option value="MD">Moldova</option><option value="MC">Monaco</option><option value="MN">Mongolia</option><option value="ME">Montenegro</option><option value="MS">Montserrat</option><option value="MA">Morocco</option><option value="MZ">Mozambique</option><option value="MM">Myanmar (Burma)</option><option value="NA">Namibia</option><option value="NR">Nauru</option><option value="NP">Nepal</option><option value="NL">Netherlands</option><option value="NC">New Caledonia</option><option value="NZ">New Zealand</option><option value="NI">Nicaragua</option><option value="NE">Niger</option><option value="NG">Nigeria</option><option value="NU">Niue</option><option value="NF">Norfolk Island</option><option value="KP">North Korea</option><option value="MP">Northern Mariana Islands</option><option value="NO">Norway</option><option value="OM">Oman</option><option value="PK">Pakistan</option><option value="PW">Palau</option><option value="PS">Palestinian Territories</option><option value="PA">Panama</option><option value="PG">Papua New Guinea</option><option value="PY">Paraguay</option><option value="PE">Peru</option><option value="PH">Philippines</option><option value="PN">Pitcairn Islands</option><option value="PL">Poland</option><option value="PT">Portugal</option><option value="PR">Puerto Rico</option><option value="QA">Qatar</option><option value="RE">Réunion</option><option value="RO">Romania</option><option value="RU">Russia</option><option value="RW">Rwanda</option><option value="WS">Samoa</option><option value="SM">San Marino</option><option value="ST">São Tomé &amp; Príncipe</option><option value="SA">Saudi Arabia</option><option value="SN">Senegal</option><option value="RS">Serbia</option><option value="SC">Seychelles</option><option value="SL">Sierra Leone</option><option value="SG">Singapore</option><option value="SX">Sint Maarten</option><option value="SK">Slovakia</option><option value="SI">Slovenia</option><option value="SB">Solomon Islands</option><option value="SO">Somalia</option><option value="ZA">South Africa</option><option value="GS">South Georgia &amp; South Sandwich Islands</option><option value="KR">South Korea</option><option value="SS">South Sudan</option><option value="ES">Spain</option><option value="LK">Sri Lanka</option><option value="BL">St. Barthélemy</option><option value="SH">St. Helena</option><option value="KN">St. Kitts &amp; Nevis</option><option value="LC">St. Lucia</option><option value="MF">St. Martin</option><option value="PM">St. Pierre &amp; Miquelon</option><option value="VC">St. Vincent &amp; Grenadines</option><option value="SD">Sudan</option><option value="SR">Suriname</option><option value="SJ">Svalbard &amp; Jan Mayen</option><option value="SZ">Swaziland</option><option value="SE">Sweden</option><option value="CH">Switzerland</option><option value="SY">Syria</option><option value="TW">Taiwan</option><option value="TJ">Tajikistan</option><option value="TZ">Tanzania</option><option value="TH">Thailand</option><option value="TL">Timor-Leste</option><option value="TG">Togo</option><option value="TK">Tokelau</option><option value="TO">Tonga</option><option value="TT">Trinidad &amp; Tobago</option><option value="TA">Tristan da Cunha</option><option value="TN">Tunisia</option><option value="TR">Turkey</option><option value="TM">Turkmenistan</option><option value="TC">Turks &amp; Caicos Islands</option><option value="TV">Tuvalu</option><option value="UM">U.S. Outlying Islands</option><option value="VI">U.S. Virgin Islands</option><option value="UG">Uganda</option><option value="UA">Ukraine</option><option value="AE">United Arab Emirates</option><option value="GB">United Kingdom</option><option selected value="US">United States</option><option value="UY">Uruguay</option><option value="UZ">Uzbekistan</option><option value="VU">Vanuatu</option><option value="VA">Vatican City</option><option value="VE">Venezuela</option><option value="VN">Vietnam</option><option value="WF">Wallis &amp; Futuna</option><option value="EH">Western Sahara</option><option value="YE">Yemen</option><option value="ZM">Zambia</option><option value="ZW">Zimbabwe</option></select>
+                </div>
+
+                <hr>
+
+                
+
+                <div id="results" class="mb-3">
+                  <div
+                      class="alert alert-success alert-dismissible submit-row" role="alert"
+                      x-cloak="success" x-show="success"
+                  >
+                    <strong>Success!</strong>
+                    Your profile has been updated
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    </button>
+                  </div>
+
+
+                  <template x-for="(msg, idx) in errors" :key="idx">
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                      <span class="sr-only">Error:</span>
+                      <span x-text="msg"></span>
+                      <button
+                          type="button" class="btn-close" data-bs-dismiss="alert"
+                          aria-label="Close"
+                      >
+                      </button>
+                    </div>
+                  </template>
+                </div>
+
+                <div class="mb-3">
+                  <input class="btn btn-primary float-end px-4" id="_submit" name="_submit" type="submit" value="Submit">
+                </div>
+              </form>
+            
+          </div>
+
+          <div class="tab-pane fade" id="tokens" role="tabpanel">
+
+            
+              <form method="POST" x-data="TokensForm" @submit.prevent="generateToken()" class="mb-3">
+                <div class="modal fade" tabindex="-1" x-ref="tokenModal">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">API Key Generated</h5>
+                        <button
+                            type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                      </div>
+
+                      <div class="modal-body">
+                        <p>Please copy your API Key, it won't be shown again!</p>
+
+                        <div class="input-group mb-3">
+                          <input
+                              type="text" class="form-control bg-white" x-ref="token"
+                              x-model="token" readonly
+                          >
+                          <button
+                              class="btn btn-outline-secondary px-3" type="button"
+                              @click="copyToken()"
+                          >
+                            <i class="fas fa-clipboard"></i>
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                          Got it!
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <b><label class="form-label" for="expiration">Expiration</label></b>
+                  <input class="form-control" id="expiration" name="expiration" type="date" value="">
+                </div>
+
+                <div class="mb-3">
+                  <b><label class="form-label" for="description">Usage Description</label></b>
+                  <textarea class="form-control" id="description" name="description" rows="3">
+</textarea>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <input class="btn btn-block btn-primary float-end px-4" id="_submit" name="_submit" type="submit" value="Generate">
+                  </div>
+                </div>
+              </form>
+            
+
+            
+              <hr>
+
+              <h4 class="text-center mt-3">Active Tokens</h4>
+
+              
+              <div x-data="Tokens">
+                <div
+                    class="modal fade" x-ref="confirmModal" tabindex="-1" role="dialog"
+                    aria-modal="true"
+                >
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Delete Token</h5>
+                        <button
+                            type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"
+                        >
+                        </button>
+                      </div>
+
+                      <div class="modal-body">
+                        <p>Are you sure you want to delete this token?</p>
+                      </div>
+
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                          No
+                        </button>
+                        <button
+                            type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                            @click="deleteSelectedToken()"
+                        >Yes
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <table class="table table-striped align-middle">
+                  <thead>
+                  <tr>
+                    <th class="text-center">Created</th>
+                    <th>Expiration</th>
+                    <th>Description</th>
+                    <th>Delete</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  
+                    <tr x-ref="token-68">
+                      <td class="text-center">
+                        <span data-time="2026-03-07T21:27:59.283333Z"></span>
+                      </td>
+                      <td>
+                        <span data-time="2026-04-06T21:27:59.283346Z"></span>
+                      </td>
+                      <td>
+                        <span></span>
+                      </td>
+                      <td class="text-center">
+                        <span
+                            class="delete-token" role="button"
+                            @click="deleteTokenModal(68)">
+                            <i class="cursor-pointer fas fa-times"></i>
+                        </span>
+                      </td>
+                    </tr>
+                  
+
+                  </tbody>
+                </table>
+              </div>
+            
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+
+<div 
+    id="ctfdio-snackbar-email-nudge"
+    x-data 
+    x-show="window.init.userId && !window.init.userVerified && localStorage.getItem('remind_email_verify') != window.init.userId && (!['/team', '/teams/join', '/teams/new'].includes(window.location.pathname) || window.init.teamId != null)"
+    class="alert alert-info alert-dismissible col-md-4 col-10 position-fixed text-center m-0 ctfdio-email-nudge" 
+    style="bottom: 45px; left: 50%; transform: translateX(-50%); z-index: 1040; display: none;" 
+    role="alert"
+>
+  <small>
+    <strong>Email Unconfirmed</strong><br>
+    <span>To confirm your email address please <a href="/confirm?flow=init">click here</a>.</span>
+  </small>
+  <button type="button" class="btn-close" @click="localStorage.setItem('remind_email_verify', window.init.userId); $el.parentElement.style.display = 'none';" aria-label="Close"></button>
+</div>
+
+
+<footer class="footer">
+  <div class="container text-center">
+    <a href="https://ctfd.io" class="text-secondary">
+      <small class="text-muted">
+        Powered by CTFd
+      </small>
+    </a>
+  </div>
+</footer>
+
+<div x-data>
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div x-ref="toast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+      <div class="toast-header">
+        <strong class="me-auto" x-text="$store.toast.title"></strong>
+        <small>just now</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body" x-html="$store.toast.html">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div x-data>
+  <div class="modal fade" x-ref="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" x-text="$store.modal.title"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p x-html="$store.modal.html"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Got it!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <script type="module"  src="https://cdn.cloud.ctfd.io/ectf/themes/core/static/assets/index.94b01c79.js"></script><script type="module"  src="https://cdn.cloud.ctfd.io/ectf/themes/core/static/assets/clipboard.26e62f1b.js"></script><script type="module"  src="https://cdn.cloud.ctfd.io/ectf/themes/core/static/assets/settings.cec5001b.js"></script>
+
+
+<script defer src="https://cdn.cloud.ctfd.io/ectf/static/recaptcha.js?t=a536e978"></script>
+<script defer src="https://www.google.com/recaptcha/api.js"></script>
+
+
+</body>
+</html>

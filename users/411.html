@@ -1,0 +1,4786 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>2026 eCTF</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="/files/da4ed67c15a9d951d7b0d15ea24ecd11/eCTF_icon_sm_white.png" type="image/x-icon">
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.cloud.ctfd.io/ectf/themes/core/static/assets/main.e9ec7884.css">
+  
+
+  
+
+  <script  src="https://cdn.cloud.ctfd.io/ectf/themes/core/static/assets/color_mode_switcher.52334129.js"></script>
+
+  <script type="text/javascript">
+      window.init = {
+          'urlRoot': "",
+          'csrfNonce': "380cbdd534bf6be938cfa2cca4b41535252e275d587b3fffdb2757d61dec3342",
+          'userMode': "users",
+          'userId': 333,
+          'userName': "Dakota State University - DSU",
+          'userEmail': "dsu@ectf.fake",
+          'userVerified': true,
+          'teamId': null,
+          'teamName': null,
+          'start': 1768410000,
+          'end': 1776268800,
+          'themeSettings': null,
+          'eventSounds': [
+            "/themes/core/static/sounds/notification.webm",
+            "/themes/core/static/sounds/notification.mp3",
+          ],
+      }
+  </script>
+
+  <style id="theme-color">
+:root {--theme-color: #005b94;}
+.navbar{background-color: var(--theme-color) !important;}
+.jumbotron{background-color: var(--theme-color) !important;}
+</style>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a href="/" class="navbar-brand">
+      
+        <img
+            class="img-responsive ctf_logo"
+            src="/files/55908d261e2bf57c28b6dfbcfbe0fc81/eCTF_wordmark_white.png"
+            alt="2026 eCTF"
+            height="25"
+        >
+      
+    </a>
+
+    <button
+        class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#base-navbars"
+        aria-controls="base-navbars" aria-expanded="false" aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="base-navbars">
+      <ul class="navbar-nav me-auto">
+        
+
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/users">
+              Users
+            </a>
+          </li>
+
+          
+        
+
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/scoreboard">
+              Scoreboard
+            </a>
+          </li>
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/challenges">
+            Challenges
+          </a>
+        </li>
+      </ul>
+
+      <hr class="d-sm-flex d-md-flex d-lg-none">
+
+      <ul class="navbar-nav ms-md-auto d-block d-sm-flex d-md-flex">
+        
+
+          
+
+          <li class="nav-item">
+            <a class="nav-link" href="/notifications">
+              <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Notifications">
+                <i class="fas fa-bell d-none d-md-inline d-lg-none"></i>
+              </span>
+              <span class="d-sm-inline d-md-none d-lg-inline">
+                  <i class="fas fa-bell pe-1"></i>
+                  <span x-data x-show="$store.unread_count > 0" x-text="$store.unread_count" class="badge rounded-pill bg-danger badge-notification"></span>
+                  Notifications
+              </span>
+            </a>
+          </li>
+
+          
+
+          <li class="nav-item">
+            <a class="nav-link" href="/user">
+              <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Profile">
+                <i class="fas fa-user-circle d-none d-md-inline d-lg-none"></i>
+              </span>
+              <span class="d-sm-inline d-md-none d-lg-inline">
+                <i class="fas fa-user-circle pe-1"></i>
+                Profile
+              </span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/settings">
+              <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Settings">
+                <i class="fas fa-cogs d-none d-md-inline d-lg-none"></i>
+              </span>
+              <span class="d-sm-inline d-md-none d-lg-inline">
+                <i class="fas fa-cogs pe-1"></i>
+                Settings
+              </span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">
+              <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout">
+                <i class="fas fa-sign-out-alt d-none d-md-inline d-lg-none"></i>
+              </span>
+              <span class="d-sm-inline d-md-none d-lg-inline">
+                <i class="fas fa-sign-out-alt pe-1"></i><span class="d-lg-none">
+                  Logout
+                </span>
+              </span>
+            </a>
+          </li>
+        
+
+        <li class="nav-item dropdown">
+          <button class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-language d-none d-md-inline"></i>
+            <span class="d-sm-inline d-md-none">
+              <i class="fas fa-language pe-1"></i>
+              Change language
+            </span>
+          </button>
+          <form x-data="LanguageForm">
+            <ul class="dropdown-menu dropdown-menu-end">
+              
+              <li>
+                  <span class="dropdown-item bg-primary text-white" @click="set" value="en">
+                    English
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="de">
+                    Deutsch
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="pl">
+                    Polski
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="es">
+                    Español
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="ar">
+                    اَلْعَرَبِيَّةُ
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="zh_CN">
+                    简体中文
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="zh_TW">
+                    繁體中文
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="fr">
+                    Français
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="ko">
+                    한국어
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="ru">
+                    русский язык
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="pt_BR">
+                    Português do Brasil
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="sk">
+                    Slovenský jazyk
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="ja">
+                    日本語
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="it">
+                    Italiano
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="vi">
+                    tiếng Việt
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="ca">
+                    Català
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="el">
+                    Ελληνικά
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="fi">
+                    Suomi
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="ro">
+                    Română
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="sl">
+                    Slovenščina
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="sv">
+                    Svenska
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="he">
+                    עברית
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="uz">
+                    oʻzbekcha
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="sr">
+                    Српски језик
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="no">
+                    Norsk
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="hr">
+                    Hrvatski
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="cs">
+                    Čeština
+                  </span>
+              </li>
+              <li>
+                  <span class="dropdown-item " @click="set" value="id">
+                    Bahasa Indonesia
+                  </span>
+              </li>
+            </ul>
+          </form>
+        </li>
+
+        <li class="nav-item">
+          <button class="nav-link theme-switch" type="button">
+            <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Toggle theme">
+              <i class="fas fa-sun d-none d-md-inline"></i>
+            </span>
+            <span class="d-sm-inline d-md-none">
+              <i class="fas fa-sun pe-1"></i>
+              Toggle theme
+            </span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main role="main">
+  
+  <div class="jumbotron">
+    <div class="container">
+      <h1>University of Trento - Trento</h1>
+
+      
+
+      <div class="pt-2">
+        
+
+        
+
+        
+      </div>
+
+      
+
+      <div class="pt-2">
+        
+      </div>
+
+      
+
+      <div>
+        <h2 class="text-center">
+          
+            7th <small>place</small>
+          
+        </h2>
+        <h2 class="text-center">
+          
+            20631 <small>points</small>
+          
+        </h2>
+      </div>
+
+      <div class="pt-3">
+        
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div>
+  
+
+  
+</div>
+
+    
+    
+    
+
+      
+        <div class="row">
+          <div class="col-md-12">
+            <h3>Awards</h3>
+          </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - UVA&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - UVA&#39;</p>
+              <p class="text-center">-467</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - UVA&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - UVA&#39;</p>
+              <p class="text-center">-496</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - UVA&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - UVA&#39;</p>
+              <p class="text-center">-460</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - Amaravati&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - Amaravati&#39;</p>
+              <p class="text-center">-487</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - Amaravati&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - Amaravati&#39;</p>
+              <p class="text-center">-484</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - Amaravati&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - Amaravati&#39;</p>
+              <p class="text-center">-483</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - Amaravati&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - Amaravati&#39;</p>
+              <p class="text-center">-481</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - Amaravati&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - Amaravati&#39;</p>
+              <p class="text-center">-484</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - Tufts&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - Tufts&#39;</p>
+              <p class="text-center">-1675</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - Tufts&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - Tufts&#39;</p>
+              <p class="text-center">-1674</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - Saddleback&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - Saddleback&#39;</p>
+              <p class="text-center">-487</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - Saddleback&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - Saddleback&#39;</p>
+              <p class="text-center">-486</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - Saddleback&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - Saddleback&#39;</p>
+              <p class="text-center">-488</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - Saddleback&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - Saddleback&#39;</p>
+              <p class="text-center">-488</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - Saddleback&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - Saddleback&#39;</p>
+              <p class="text-center">-490</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - UofL&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - UofL&#39;</p>
+              <p class="text-center">-668</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - UofL&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - UofL&#39;</p>
+              <p class="text-center">-632</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - UofL&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - UofL&#39;</p>
+              <p class="text-center">-565</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - CAT&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - CAT&#39;</p>
+              <p class="text-center">-1115</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - XU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - XU&#39;</p>
+              <p class="text-center">-453</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - XU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - XU&#39;</p>
+              <p class="text-center">-458</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - UD1&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - UD1&#39;</p>
+              <p class="text-center">-1124</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - UD1&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - UD1&#39;</p>
+              <p class="text-center">-1124</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - UD1&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - UD1&#39;</p>
+              <p class="text-center">-1113</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - UD1&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - UD1&#39;</p>
+              <p class="text-center">-1120</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - SCU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - SCU&#39;</p>
+              <p class="text-center">-483</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - SCU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - SCU&#39;</p>
+              <p class="text-center">-483</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - CAT&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - CAT&#39;</p>
+              <p class="text-center">-1107</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - SCU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - SCU&#39;</p>
+              <p class="text-center">-481</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - CAT&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - CAT&#39;</p>
+              <p class="text-center">-1107</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - SCU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - SCU&#39;</p>
+              <p class="text-center">-483</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - SCU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - SCU&#39;</p>
+              <p class="text-center">-485</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - USCG&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - USCG&#39;</p>
+              <p class="text-center">-447</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - CAT&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - CAT&#39;</p>
+              <p class="text-center">-1104</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - XU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - XU&#39;</p>
+              <p class="text-center">-470</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - XU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - XU&#39;</p>
+              <p class="text-center">-488</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - UofL&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - UofL&#39;</p>
+              <p class="text-center">-557</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - UofL&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - UofL&#39;</p>
+              <p class="text-center">-557</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - XU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - XU&#39;</p>
+              <p class="text-center">-481</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - UVA&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - UVA&#39;</p>
+              <p class="text-center">-491</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - NITC&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - NITC&#39;</p>
+              <p class="text-center">-441</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - NITC&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - NITC&#39;</p>
+              <p class="text-center">-441</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Texas Instruments Workshop</strong>
+              </p>
+              <p class="text-center">Sponsor Workshops</p>
+              <p class="text-center"></p>
+              <p class="text-center">100</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - UVA&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - UVA&#39;</p>
+              <p class="text-center">-463</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - WMU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - WMU&#39;</p>
+              <p class="text-center">-487</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - WMU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - WMU&#39;</p>
+              <p class="text-center">-484</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - Rutgers&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - Rutgers&#39;</p>
+              <p class="text-center">-501</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - Rutgers&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - Rutgers&#39;</p>
+              <p class="text-center">-501</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - WMU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - WMU&#39;</p>
+              <p class="text-center">-488</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - Cedarville&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - Cedarville&#39;</p>
+              <p class="text-center">-486</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - Cedarville&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - Cedarville&#39;</p>
+              <p class="text-center">-482</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - Cedarville&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - Cedarville&#39;</p>
+              <p class="text-center">-487</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - Cedarville&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - Cedarville&#39;</p>
+              <p class="text-center">-486</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - NITC&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - NITC&#39;</p>
+              <p class="text-center">-448</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - WMU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - WMU&#39;</p>
+              <p class="text-center">-479</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - WMU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - WMU&#39;</p>
+              <p class="text-center">-484</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - Cedarville&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - Cedarville&#39;</p>
+              <p class="text-center">-482</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - Rutgers&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - Rutgers&#39;</p>
+              <p class="text-center">-493</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>First Capture Bonus for &#39;Steal Design - Rutgers&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">First Capture Bonus for &#39;Steal Design - Rutgers&#39;</p>
+              <p class="text-center">0</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - Rutgers&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - Rutgers&#39;</p>
+              <p class="text-center">-492</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - Rutgers&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - Rutgers&#39;</p>
+              <p class="text-center">-492</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>First Capture Bonus for &#39;Read Update - Rutgers&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">First Capture Bonus for &#39;Read Update - Rutgers&#39;</p>
+              <p class="text-center">0</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - FIU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - FIU&#39;</p>
+              <p class="text-center">-452</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - TAMUCC&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - TAMUCC&#39;</p>
+              <p class="text-center">-442</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - TAMUCC&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - TAMUCC&#39;</p>
+              <p class="text-center">-442</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - TAMUCC&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - TAMUCC&#39;</p>
+              <p class="text-center">-450</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - TAMUCC&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - TAMUCC&#39;</p>
+              <p class="text-center">-442</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - TAMUCC&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - TAMUCC&#39;</p>
+              <p class="text-center">-450</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - NYIT&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - NYIT&#39;</p>
+              <p class="text-center">-491</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - NYIT&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - NYIT&#39;</p>
+              <p class="text-center">-490</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - UTD&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - UTD&#39;</p>
+              <p class="text-center">-548</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - NYIT&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - NYIT&#39;</p>
+              <p class="text-center">-492</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - NYIT&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - NYIT&#39;</p>
+              <p class="text-center">-493</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - UTD&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - UTD&#39;</p>
+              <p class="text-center">-545</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - OC&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - OC&#39;</p>
+              <p class="text-center">-1030</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - PSU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - PSU&#39;</p>
+              <p class="text-center">-446</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - FIU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - FIU&#39;</p>
+              <p class="text-center">-479</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - FIU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - FIU&#39;</p>
+              <p class="text-center">-474</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - FIU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - FIU&#39;</p>
+              <p class="text-center">-467</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - UCONN&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - UCONN&#39;</p>
+              <p class="text-center">-450</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - OC&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - OC&#39;</p>
+              <p class="text-center">-1038</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - OC&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - OC&#39;</p>
+              <p class="text-center">-1038</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - OC&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - OC&#39;</p>
+              <p class="text-center">-1038</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - NYIT&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - NYIT&#39;</p>
+              <p class="text-center">-492</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - GT&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - GT&#39;</p>
+              <p class="text-center">-827</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - GT&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - GT&#39;</p>
+              <p class="text-center">-794</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - USAFA&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - USAFA&#39;</p>
+              <p class="text-center">-574</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - USAFA&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - USAFA&#39;</p>
+              <p class="text-center">-574</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - GT&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - GT&#39;</p>
+              <p class="text-center">-793</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - CSUF&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - CSUF&#39;</p>
+              <p class="text-center">-510</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - CSUF&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - CSUF&#39;</p>
+              <p class="text-center">-511</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - GT&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - GT&#39;</p>
+              <p class="text-center">-784</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - CSUF&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - CSUF&#39;</p>
+              <p class="text-center">-485</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - CSUF&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - CSUF&#39;</p>
+              <p class="text-center">-489</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - CSUF&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - CSUF&#39;</p>
+              <p class="text-center">-490</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - TTU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - TTU&#39;</p>
+              <p class="text-center">-573</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - TTU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - TTU&#39;</p>
+              <p class="text-center">-571</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - DSU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - DSU&#39;</p>
+              <p class="text-center">-956</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - DSU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - DSU&#39;</p>
+              <p class="text-center">-920</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - PESU2&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - PESU2&#39;</p>
+              <p class="text-center">-772</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - UTEP&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - UTEP&#39;</p>
+              <p class="text-center">-522</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - UTEP&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - UTEP&#39;</p>
+              <p class="text-center">-522</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - UTD&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - UTD&#39;</p>
+              <p class="text-center">-551</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - CWRU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - CWRU&#39;</p>
+              <p class="text-center">-531</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - CWRU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - CWRU&#39;</p>
+              <p class="text-center">-531</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - GT&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - GT&#39;</p>
+              <p class="text-center">-550</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - UTEP&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - UTEP&#39;</p>
+              <p class="text-center">-517</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - UTEP&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - UTEP&#39;</p>
+              <p class="text-center">-518</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - UNO&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - UNO&#39;</p>
+              <p class="text-center">-486</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - UNO&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - UNO&#39;</p>
+              <p class="text-center">-451</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - UNO&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - UNO&#39;</p>
+              <p class="text-center">-566</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - UNO&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - UNO&#39;</p>
+              <p class="text-center">-481</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - USCGA1&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - USCGA1&#39;</p>
+              <p class="text-center">-803</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - USCGA1&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - USCGA1&#39;</p>
+              <p class="text-center">-801</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - USCGA1&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - USCGA1&#39;</p>
+              <p class="text-center">-798</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - USCGA1&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - USCGA1&#39;</p>
+              <p class="text-center">-795</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - UTEP&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - UTEP&#39;</p>
+              <p class="text-center">-523</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>First Capture Bonus for &#39;Steal Design - UTEP&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">First Capture Bonus for &#39;Steal Design - UTEP&#39;</p>
+              <p class="text-center">0</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - VT&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - VT&#39;</p>
+              <p class="text-center">-514</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - VT&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - VT&#39;</p>
+              <p class="text-center">-506</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - VT&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - VT&#39;</p>
+              <p class="text-center">-498</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - VT&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - VT&#39;</p>
+              <p class="text-center">-506</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - USF&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - USF&#39;</p>
+              <p class="text-center">-760</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - USF&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - USF&#39;</p>
+              <p class="text-center">-761</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - USF&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - USF&#39;</p>
+              <p class="text-center">-745</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - USF&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - USF&#39;</p>
+              <p class="text-center">-756</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - OC&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - OC&#39;</p>
+              <p class="text-center">-474</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - NEU1&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - NEU1&#39;</p>
+              <p class="text-center">-470</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - NEU1&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - NEU1&#39;</p>
+              <p class="text-center">-472</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - LWHS&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - LWHS&#39;</p>
+              <p class="text-center">-515</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - LWHS&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - LWHS&#39;</p>
+              <p class="text-center">-514</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - LWHS&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - LWHS&#39;</p>
+              <p class="text-center">-512</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - LWHS&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - LWHS&#39;</p>
+              <p class="text-center">-512</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - NEU1&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - NEU1&#39;</p>
+              <p class="text-center">-476</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - Tufts&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - Tufts&#39;</p>
+              <p class="text-center">-867</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>First Capture Bonus for &#39;Read Update - Tufts&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">First Capture Bonus for &#39;Read Update - Tufts&#39;</p>
+              <p class="text-center">0</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - Tufts&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - Tufts&#39;</p>
+              <p class="text-center">-665</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - NEU1&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - NEU1&#39;</p>
+              <p class="text-center">-477</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - EPCC&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - EPCC&#39;</p>
+              <p class="text-center">-497</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - EPCC&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - EPCC&#39;</p>
+              <p class="text-center">-497</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - MHHS&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - MHHS&#39;</p>
+              <p class="text-center">-492</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - MHHS&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - MHHS&#39;</p>
+              <p class="text-center">-491</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Backdoored Design - DUTH&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Backdoored Design - DUTH&#39;</p>
+              <p class="text-center">-497</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - DSU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - DSU&#39;</p>
+              <p class="text-center">-662</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - VT&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - VT&#39;</p>
+              <p class="text-center">-501</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - UD1&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - UD1&#39;</p>
+              <p class="text-center">-579</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - UNO&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - UNO&#39;</p>
+              <p class="text-center">-457</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - USF&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - USF&#39;</p>
+              <p class="text-center">-469</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - NEU1&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - NEU1&#39;</p>
+              <p class="text-center">-461</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - CWRU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - CWRU&#39;</p>
+              <p class="text-center">-556</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - CAT&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - CAT&#39;</p>
+              <p class="text-center">-472</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Compromise Machine - DUTH&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Compromise Machine - DUTH&#39;</p>
+              <p class="text-center">-498</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - Tufts&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - Tufts&#39;</p>
+              <p class="text-center">-526</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - TTU&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - TTU&#39;</p>
+              <p class="text-center">-468</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - DUTH&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - DUTH&#39;</p>
+              <p class="text-center">-500</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - USCGA1&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - USCGA1&#39;</p>
+              <p class="text-center">-493</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - LWHS&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - LWHS&#39;</p>
+              <p class="text-center">-505</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - MHHS&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - MHHS&#39;</p>
+              <p class="text-center">-489</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - MHHS&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - MHHS&#39;</p>
+              <p class="text-center">-493</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - DUTH&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - DUTH&#39;</p>
+              <p class="text-center">-499</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - DUTH&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - DUTH&#39;</p>
+              <p class="text-center">-500</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Steal Design - EPCC&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Steal Design - EPCC&#39;</p>
+              <p class="text-center">-497</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Update - EPCC&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Update - EPCC&#39;</p>
+              <p class="text-center">-497</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - EPCC&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - EPCC&#39;</p>
+              <p class="text-center">-498</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Shared Points Adjustment for &#39;Read Design - MHHS&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Shared Points Adjustment for &#39;Read Design - MHHS&#39;</p>
+              <p class="text-center">-492</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Defensive Points for &#39;Steal Design - Trento&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Defensive Points for &#39;Steal Design - Trento&#39;</p>
+              <p class="text-center">1712</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Defensive Points for &#39;Read Update - Trento&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Defensive Points for &#39;Read Update - Trento&#39;</p>
+              <p class="text-center">1712</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Defensive Points for &#39;Read Design - Trento&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Defensive Points for &#39;Read Design - Trento&#39;</p>
+              <p class="text-center">1712</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Defensive Points for &#39;Compromise Machine - Trento&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Defensive Points for &#39;Compromise Machine - Trento&#39;</p>
+              <p class="text-center">1712</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Defensive Points for &#39;Backdoored Design - Trento&#39;</strong>
+              </p>
+              <p class="text-center">ectf</p>
+              <p class="text-center">Defensive Points for &#39;Backdoored Design - Trento&#39;</p>
+              <p class="text-center">1712</p>
+            </div>
+          
+            <div class="col-md-3 col-sm-6">
+              <p class="text-center">
+                <i class="award-icon award- fa-2x"></i>
+                <br>
+                <strong>Rolls-Royce Workshop</strong>
+              </p>
+              <p class="text-center">Sponsor Workshops</p>
+              <p class="text-center"></p>
+              <p class="text-center">100</p>
+            </div>
+          
+        </div>
+      
+
+      <br>
+
+      <div class="row">
+        <div class="col-md-12">
+          <h3>Solves</h3>
+          <table class="table table-striped align-middle">
+            <thead>
+            <tr>
+              <th>Challenge</th>
+              <th class="d-none d-md-block d-lg-block">Category</th>
+              <th>Value</th>
+              <th>Time</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - UVA-1578">
+                    Steal Design - UVA
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UVA</td>
+                <td>520</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-14T23:56:01.346290Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - UVA-1143">
+                    Compromise Machine - UVA
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UVA</td>
+                <td>560</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-14T23:55:30.623475Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - UVA-1433">
+                    Read Update - UVA
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UVA</td>
+                <td>520</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-14T23:00:47.503284Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - Amaravati-1305">
+                    Read Update - Amaravati
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - Amaravati</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-14T17:00:53.902653Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - Amaravati-1160">
+                    Read Design - Amaravati
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - Amaravati</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-14T16:27:11.836645Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - Amaravati-870">
+                    Backdoored Design - Amaravati
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - Amaravati</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-14T16:22:30.896463Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - Amaravati-1450">
+                    Steal Design - Amaravati
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - Amaravati</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-14T15:34:36.026173Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - Amaravati-1015">
+                    Compromise Machine - Amaravati
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - Amaravati</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-14T15:09:35.780764Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - Tufts-969">
+                    Backdoored Design - Tufts
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - Tufts</td>
+                <td>2054</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-14T13:38:51.379635Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - Tufts-1259">
+                    Read Design - Tufts
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - Tufts</td>
+                <td>2054</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-14T10:59:15.116341Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - Saddleback-1105">
+                    Compromise Machine - Saddleback
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - Saddleback</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-14T09:51:06.800322Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - Saddleback-960">
+                    Backdoored Design - Saddleback
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - Saddleback</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-14T09:50:54.387764Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - Saddleback-1540">
+                    Steal Design - Saddleback
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - Saddleback</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-14T09:24:57.605040Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - Saddleback-1250">
+                    Read Design - Saddleback
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - Saddleback</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-14T07:33:41.778117Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - Saddleback-1395">
+                    Read Update - Saddleback
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - Saddleback</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-14T07:25:38.594860Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - UofL-1001">
+                    Backdoored Design - UofL
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UofL</td>
+                <td>808</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-14T00:21:45.727625Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - UofL-1146">
+                    Compromise Machine - UofL
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UofL</td>
+                <td>762</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-14T00:00:44.141321Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - UofL-1581">
+                    Steal Design - UofL
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UofL</td>
+                <td>682</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-13T21:22:53.934162Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - CAT-877">
+                    Backdoored Design - CAT
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - CAT</td>
+                <td>1334</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-13T14:19:01.717957Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - XU-1008">
+                    Backdoored Design - XU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - XU</td>
+                <td>516</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-12T17:30:37.829619Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - XU-1153">
+                    Compromise Machine - XU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - XU</td>
+                <td>514</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-12T17:27:10.049944Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - UD1-977">
+                    Backdoored Design - UD1
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UD1</td>
+                <td>1312</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-10T20:05:15.226611Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - UD1-1267">
+                    Read Design - UD1
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UD1</td>
+                <td>1312</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-10T20:01:03.153511Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - UD1-1122">
+                    Compromise Machine - UD1
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UD1</td>
+                <td>1342</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-10T19:27:22.100895Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - UD1-1412">
+                    Read Update - UD1
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UD1</td>
+                <td>1350</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-10T19:12:31.342069Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - SCU-1591">
+                    Compromise Machine - SCU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - SCU</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-10T13:19:42.657485Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - SCU-1590">
+                    Backdoored Design - SCU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - SCU</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-10T13:11:43.746615Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - CAT-1022">
+                    Compromise Machine - CAT
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - CAT</td>
+                <td>1334</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-10T12:36:20.438943Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - SCU-1594">
+                    Steal Design - SCU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - SCU</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-10T11:26:42.185071Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - CAT-1312">
+                    Read Update - CAT
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - CAT</td>
+                <td>1334</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-10T10:26:52.110733Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - SCU-1592">
+                    Read Design - SCU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - SCU</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-10T08:34:22.027265Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - SCU-1593">
+                    Read Update - SCU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - SCU</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-10T08:15:25.197648Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - USCG-1571">
+                    Steal Design - USCG
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - USCG</td>
+                <td>512</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-10T00:09:50.672579Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - CAT-1167">
+                    Read Design - CAT
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - CAT</td>
+                <td>1334</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-09T15:07:15.330544Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - XU-1588">
+                    Steal Design - XU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - XU</td>
+                <td>514</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-09T13:29:40.228492Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - XU-1443">
+                    Read Update - XU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - XU</td>
+                <td>514</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-09T13:26:38.779627Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - UofL-1291">
+                    Read Design - UofL
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UofL</td>
+                <td>676</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-09T11:06:06.653843Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - UofL-1436">
+                    Read Update - UofL
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UofL</td>
+                <td>676</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-09T10:43:46.760481Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - XU-1298">
+                    Read Design - XU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - XU</td>
+                <td>514</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-09T10:24:02.485803Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - UVA-998">
+                    Backdoored Design - UVA
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UVA</td>
+                <td>560</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-09T07:46:43.025811Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - NITC-1221">
+                    Read Design - NITC
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - NITC</td>
+                <td>514</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-09T07:21:21.603788Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - NITC-1366">
+                    Read Update - NITC
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - NITC</td>
+                <td>514</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-08T22:15:37.615749Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - UVA-1288">
+                    Read Design - UVA
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UVA</td>
+                <td>520</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-08T18:38:01.144656Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - WMU-1149">
+                    Compromise Machine - WMU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - WMU</td>
+                <td>510</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-08T13:58:07.258145Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - WMU-1004">
+                    Backdoored Design - WMU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - WMU</td>
+                <td>510</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-08T13:39:58.920827Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - Rutgers-1094">
+                    Compromise Machine - Rutgers
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - Rutgers</td>
+                <td>524</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-08T13:05:17.141711Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - Rutgers-949">
+                    Backdoored Design - Rutgers
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - Rutgers</td>
+                <td>524</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-08T12:57:18.480661Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - WMU-1439">
+                    Read Update - WMU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - WMU</td>
+                <td>510</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-08T11:23:42.446216Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - Cedarville-885">
+                    Backdoored Design - Cedarville
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - Cedarville</td>
+                <td>566</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-08T08:35:04.101725Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - Cedarville-1030">
+                    Compromise Machine - Cedarville
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - Cedarville</td>
+                <td>568</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-08T08:34:52.677510Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - Cedarville-1175">
+                    Read Design - Cedarville
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - Cedarville</td>
+                <td>562</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-08T08:34:29.451316Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - Cedarville-1465">
+                    Steal Design - Cedarville
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - Cedarville</td>
+                <td>566</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-08T08:34:10.725612Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - NITC-1511">
+                    Steal Design - NITC
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - NITC</td>
+                <td>512</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-08T00:23:45.576564Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - WMU-1584">
+                    Steal Design - WMU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - WMU</td>
+                <td>510</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-07T17:47:29.932720Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - WMU-1294">
+                    Read Design - WMU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - WMU</td>
+                <td>510</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-07T17:42:09.480118Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - Cedarville-1320">
+                    Read Update - Cedarville
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - Cedarville</td>
+                <td>562</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-07T15:10:48.843213Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - Rutgers-1529">
+                    Steal Design - Rutgers
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - Rutgers</td>
+                <td>514</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-07T12:05:07.807706Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - Rutgers-1239">
+                    Read Design - Rutgers
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - Rutgers</td>
+                <td>512</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-07T11:48:22.959083Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - Rutgers-1384">
+                    Read Update - Rutgers
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - Rutgers</td>
+                <td>512</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-07T11:34:36.319396Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - FIU-1045">
+                    Compromise Machine - FIU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - FIU</td>
+                <td>510</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-04T12:40:24.329975Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - TAMUCC-1542">
+                    Steal Design - TAMUCC
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - TAMUCC</td>
+                <td>516</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-04T11:39:13.700714Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - TAMUCC-962">
+                    Backdoored Design - TAMUCC
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - TAMUCC</td>
+                <td>516</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-04T01:27:18.010460Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - TAMUCC-1252">
+                    Read Design - TAMUCC
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - TAMUCC</td>
+                <td>516</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-04T01:19:33.309596Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - TAMUCC-1107">
+                    Compromise Machine - TAMUCC
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - TAMUCC</td>
+                <td>516</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-03T20:56:54.572313Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - TAMUCC-1397">
+                    Read Update - TAMUCC
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - TAMUCC</td>
+                <td>516</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-03T19:20:04.177173Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - NYIT-1081">
+                    Compromise Machine - NYIT
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - NYIT</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-03T13:57:57.437170Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - NYIT-936">
+                    Backdoored Design - NYIT
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - NYIT</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-03T13:57:46.573105Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - UTD-996">
+                    Backdoored Design - UTD
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UTD</td>
+                <td>620</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-03T12:20:04.739938Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - NYIT-1371">
+                    Read Update - NYIT
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - NYIT</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-03T10:22:12.998865Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - NYIT-1226">
+                    Read Design - NYIT
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - NYIT</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-03T10:16:54.198860Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - UTD-1286">
+                    Read Design - UTD
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UTD</td>
+                <td>616</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-03T09:56:40.168561Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - OC-938">
+                    Backdoored Design - OC
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - OC</td>
+                <td>1146</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-03T09:44:30.482844Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - PSU-1522">
+                    Steal Design - PSU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - PSU</td>
+                <td>512</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-02T23:04:11.305545Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - FIU-1335">
+                    Read Update - FIU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - FIU</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-02T22:31:34.341813Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - FIU-1190">
+                    Read Design - FIU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - FIU</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-02T22:26:57.460042Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - FIU-1480">
+                    Steal Design - FIU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - FIU</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-02T22:13:04.277741Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - UCONN-1554">
+                    Steal Design - UCONN
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UCONN</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-02T21:49:36.684154Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - OC-1518">
+                    Steal Design - OC
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - OC</td>
+                <td>1146</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-02T19:31:42.850889Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - OC-1373">
+                    Read Update - OC
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - OC</td>
+                <td>1146</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-02T17:18:04.986574Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - OC-1228">
+                    Read Design - OC
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - OC</td>
+                <td>1146</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-02T17:08:52.080677Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - NYIT-1516">
+                    Steal Design - NYIT
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - NYIT</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-04-01T17:35:43.186461Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - GT-904">
+                    Backdoored Design - GT
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - GT</td>
+                <td>926</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-28T20:39:40.108271Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - GT-1049">
+                    Compromise Machine - GT
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - GT</td>
+                <td>888</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-28T20:22:48.883471Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - USAFA-990">
+                    Backdoored Design - USAFA
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - USAFA</td>
+                <td>654</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-27T11:06:40.657194Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - USAFA-1280">
+                    Read Design - USAFA
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - USAFA</td>
+                <td>654</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-26T18:12:24.774903Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - GT-1484">
+                    Steal Design - GT
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - GT</td>
+                <td>888</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-26T05:27:46.246811Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - CSUF-882">
+                    Backdoored Design - CSUF
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - CSUF</td>
+                <td>536</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-25T23:32:09.477373Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - CSUF-1027">
+                    Compromise Machine - CSUF
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - CSUF</td>
+                <td>536</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-25T23:20:38.592427Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - GT-1194">
+                    Read Design - GT
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - GT</td>
+                <td>878</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-25T22:34:04.972307Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - CSUF-1462">
+                    Steal Design - CSUF
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - CSUF</td>
+                <td>510</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-25T17:07:53.707594Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - CSUF-1172">
+                    Read Design - CSUF
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - CSUF</td>
+                <td>510</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-25T16:59:17.102574Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - CSUF-1317">
+                    Read Update - CSUF
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - CSUF</td>
+                <td>510</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-25T14:23:36.503952Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - TTU-966">
+                    Backdoored Design - TTU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - TTU</td>
+                <td>636</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-24T00:49:32.326981Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - TTU-1256">
+                    Read Design - TTU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - TTU</td>
+                <td>634</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-24T00:31:34.520126Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - DSU-890">
+                    Backdoored Design - DSU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - DSU</td>
+                <td>1090</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-23T14:25:40.156898Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - DSU-1180">
+                    Read Design - DSU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - DSU</td>
+                <td>1048</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-23T14:21:05.743857Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - PESU2-1521">
+                    Steal Design - PESU2
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - PESU2</td>
+                <td>848</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-23T01:02:28.203119Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - UTEP-1287">
+                    Read Design - UTEP
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UTEP</td>
+                <td>550</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-21T11:40:50.339710Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - UTEP-1432">
+                    Read Update - UTEP
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UTEP</td>
+                <td>550</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-21T11:24:43.954393Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - UTD-1576">
+                    Steal Design - UTD
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UTD</td>
+                <td>616</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-21T11:00:34.116849Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - CWRU-884">
+                    Backdoored Design - CWRU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - CWRU</td>
+                <td>592</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-21T07:51:52.845893Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - CWRU-1174">
+                    Read Design - CWRU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - CWRU</td>
+                <td>592</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-21T07:47:20.859845Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - GT-1339">
+                    Read Update - GT
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - GT</td>
+                <td>616</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-20T19:19:54.842491Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - UTEP-997">
+                    Backdoored Design - UTEP
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UTEP</td>
+                <td>550</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-20T14:54:02.207155Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - UTEP-1142">
+                    Compromise Machine - UTEP
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UTEP</td>
+                <td>550</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-20T14:44:56.695818Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - UNO-1277">
+                    Read Design - UNO
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UNO</td>
+                <td>514</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-20T12:48:57.891139Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - UNO-1422">
+                    Read Update - UNO
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UNO</td>
+                <td>540</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-20T12:48:42.851699Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - UNO-987">
+                    Backdoored Design - UNO
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UNO</td>
+                <td>646</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-20T12:41:37.865945Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - UNO-1132">
+                    Compromise Machine - UNO
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UNO</td>
+                <td>540</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-20T12:40:19.860990Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - USCGA1-992">
+                    Backdoored Design - USCGA1
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - USCGA1</td>
+                <td>858</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-19T16:35:13.457068Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - USCGA1-1282">
+                    Read Design - USCGA1
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - USCGA1</td>
+                <td>858</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-19T16:22:11.453433Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - USCGA1-1137">
+                    Compromise Machine - USCGA1
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - USCGA1</td>
+                <td>858</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-19T16:13:04.225931Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - USCGA1-1427">
+                    Read Update - USCGA1
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - USCGA1</td>
+                <td>858</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-19T16:09:01.876831Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - UTEP-1577">
+                    Steal Design - UTEP
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UTEP</td>
+                <td>550</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-19T15:26:55.876483Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - VT-1673">
+                    Read Design - VT
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - VT</td>
+                <td>556</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-19T15:00:25.892748Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - VT-1671">
+                    Backdoored Design - VT
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - VT</td>
+                <td>556</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-19T14:24:07.234633Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - VT-1672">
+                    Compromise Machine - VT
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - VT</td>
+                <td>556</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-19T14:13:18.180581Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - VT-1674">
+                    Read Update - VT
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - VT</td>
+                <td>556</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-19T13:56:50.960163Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - USF-994">
+                    Backdoored Design - USF
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - USF</td>
+                <td>840</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-19T10:16:15.533902Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - USF-1284">
+                    Read Design - USF
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - USF</td>
+                <td>840</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-19T10:08:52.864404Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - USF-1139">
+                    Compromise Machine - USF
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - USF</td>
+                <td>840</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-19T10:04:38.739052Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - USF-1429">
+                    Read Update - USF
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - USF</td>
+                <td>840</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-19T09:59:58.885096Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - OC-1083">
+                    Compromise Machine - OC
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - OC</td>
+                <td>526</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-18T02:43:38.826647Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - NEU1-929">
+                    Backdoored Design - NEU1
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - NEU1</td>
+                <td>520</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-18T00:50:32.856778Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - NEU1-1219">
+                    Read Design - NEU1
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - NEU1</td>
+                <td>518</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-18T00:49:41.454761Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - LWHS-1354">
+                    Read Update - LWHS
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - LWHS</td>
+                <td>540</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-17T12:48:40.161294Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - LWHS-1209">
+                    Read Design - LWHS
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - LWHS</td>
+                <td>540</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-17T12:48:13.438956Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - LWHS-1064">
+                    Compromise Machine - LWHS
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - LWHS</td>
+                <td>536</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-16T22:32:59.943631Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - LWHS-919">
+                    Backdoored Design - LWHS
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - LWHS</td>
+                <td>538</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-16T22:07:06.478113Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - NEU1-1364">
+                    Read Update - NEU1
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - NEU1</td>
+                <td>518</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-16T16:03:44.903273Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - Tufts-1404">
+                    Read Update - Tufts
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - Tufts</td>
+                <td>1068</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-16T00:30:32.018115Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - Tufts-1114">
+                    Compromise Machine - Tufts
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - Tufts</td>
+                <td>744</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-15T15:59:15.294935Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - NEU1-1074">
+                    Compromise Machine - NEU1
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - NEU1</td>
+                <td>512</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-15T12:33:20.189480Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - EPCC-1039">
+                    Compromise Machine - EPCC
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - EPCC</td>
+                <td>516</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-15T12:05:42.741685Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - EPCC-894">
+                    Backdoored Design - EPCC
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - EPCC</td>
+                <td>516</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-15T12:05:31.670416Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - MHHS-1065">
+                    Compromise Machine - MHHS
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - MHHS</td>
+                <td>510</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-15T00:41:14.026291Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - MHHS-920">
+                    Backdoored Design - MHHS
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - MHHS</td>
+                <td>510</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-15T00:41:01.568128Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - DUTH-892">
+                    Backdoored Design - DUTH
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - DUTH</td>
+                <td>516</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-14T23:57:58.125445Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - DSU-1470">
+                    Steal Design - DSU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - DSU</td>
+                <td>734</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-14T16:03:20.805670Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - VT-1675">
+                    Steal Design - VT
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - VT</td>
+                <td>550</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-14T10:46:18.661161Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - UD1-1557">
+                    Steal Design - UD1
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UD1</td>
+                <td>646</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-14T00:29:22.022342Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - UNO-1567">
+                    Steal Design - UNO
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - UNO</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-13T23:38:20.487262Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - USF-1574">
+                    Steal Design - USF
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - USF</td>
+                <td>510</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-13T23:24:31.680081Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - NEU1-1509">
+                    Steal Design - NEU1
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - NEU1</td>
+                <td>510</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-13T13:52:07.984705Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - CWRU-1464">
+                    Steal Design - CWRU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - CWRU</td>
+                <td>606</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-13T12:23:00.871353Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - CAT-1457">
+                    Steal Design - CAT
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - CAT</td>
+                <td>512</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-13T10:46:46.041342Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - DUTH-1037">
+                    Compromise Machine - DUTH
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - DUTH</td>
+                <td>516</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-12T23:16:05.599496Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - Tufts-1549">
+                    Steal Design - Tufts
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - Tufts</td>
+                <td>574</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-12T17:46:36.636760Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - TTU-1546">
+                    Steal Design - TTU
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - TTU</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-12T17:29:02.339277Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - DUTH-1472">
+                    Steal Design - DUTH
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - DUTH</td>
+                <td>516</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-12T16:41:00.868324Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - USCGA1-1572">
+                    Steal Design - USCGA1
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - USCGA1</td>
+                <td>510</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-12T10:41:35.704014Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - LWHS-1499">
+                    Steal Design - LWHS
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - LWHS</td>
+                <td>532</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-12T09:44:35.714069Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - MHHS-1500">
+                    Steal Design - MHHS
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - MHHS</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-11T23:55:38.237076Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - MHHS-1355">
+                    Read Update - MHHS
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - MHHS</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-11T23:54:05.134358Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - DUTH-1327">
+                    Read Update - DUTH
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - DUTH</td>
+                <td>514</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-11T22:04:55.815018Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - DUTH-1182">
+                    Read Design - DUTH
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - DUTH</td>
+                <td>514</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-11T22:01:47.505144Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - EPCC-1474">
+                    Steal Design - EPCC
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - EPCC</td>
+                <td>512</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-11T21:56:55.555752Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - EPCC-1329">
+                    Read Update - EPCC
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - EPCC</td>
+                <td>512</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-11T21:52:18.339224Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - EPCC-1184">
+                    Read Design - EPCC
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - EPCC</td>
+                <td>512</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-11T21:47:33.830255Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - MHHS-1210">
+                    Read Design - MHHS
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack - MHHS</td>
+                <td>508</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-11T12:36:38.589912Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Handoff-854">
+                    Handoff
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Design Flags</td>
+                <td>1000</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-11T05:39:54.238840Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Team Photo-1625">
+                    Team Photo
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Design Flags</td>
+                <td>100</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-05T14:03:38.749689Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design-845">
+                    Backdoored Design
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack the Reference</td>
+                <td>10</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-04T17:30:25.533849Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Backdoored Design - On Time-844">
+                    Backdoored Design - On Time
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack the Reference</td>
+                <td>10</td>
+                <td class="solve-time">
+                  <span data-time="2026-03-04T17:30:19.340097Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine-849">
+                    Compromise Machine
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack the Reference</td>
+                <td>10</td>
+                <td class="solve-time">
+                  <span data-time="2026-02-25T09:31:38.781404Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Compromise Machine - On Time-848">
+                    Compromise Machine - On Time
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack the Reference</td>
+                <td>10</td>
+                <td class="solve-time">
+                  <span data-time="2026-02-25T09:31:32.956187Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Design Document - On Time-852">
+                    Design Document - On Time
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Design Flags</td>
+                <td>100</td>
+                <td class="solve-time">
+                  <span data-time="2026-01-30T14:41:15.568639Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Debugger-851">
+                    Debugger
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Design Flags</td>
+                <td>50</td>
+                <td class="solve-time">
+                  <span data-time="2026-01-22T18:55:39.172121Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design-856">
+                    Read Design
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack the Reference</td>
+                <td>10</td>
+                <td class="solve-time">
+                  <span data-time="2026-01-22T18:55:22.700148Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update-858">
+                    Read Update
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack the Reference</td>
+                <td>10</td>
+                <td class="solve-time">
+                  <span data-time="2026-01-22T18:55:12.226245Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Testing Service-864">
+                    Testing Service
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Design Flags</td>
+                <td>50</td>
+                <td class="solve-time">
+                  <span data-time="2026-01-22T18:52:54.902629Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Boot the Reference-847">
+                    Boot the Reference
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Design Flags</td>
+                <td>50</td>
+                <td class="solve-time">
+                  <span data-time="2026-01-22T18:49:46.197181Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design-862">
+                    Steal Design
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack the Reference</td>
+                <td>10</td>
+                <td class="solve-time">
+                  <span data-time="2026-01-22T18:47:37.106920Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read the Rules-860">
+                    Read the Rules
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Design Flags</td>
+                <td>50</td>
+                <td class="solve-time">
+                  <span data-time="2026-01-22T12:52:16.537998Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Steal Design - On Time-861">
+                    Steal Design - On Time
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack the Reference</td>
+                <td>10</td>
+                <td class="solve-time">
+                  <span data-time="2026-01-16T15:03:35.513522Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Testing Service - On Time-863">
+                    Testing Service - On Time
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Design Flags</td>
+                <td>50</td>
+                <td class="solve-time">
+                  <span data-time="2026-01-15T16:45:09.085064Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Debugger - On Time-850">
+                    Debugger - On Time
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Design Flags</td>
+                <td>50</td>
+                <td class="solve-time">
+                  <span data-time="2026-01-15T15:59:29.282107Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Update - On Time-857">
+                    Read Update - On Time
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack the Reference</td>
+                <td>10</td>
+                <td class="solve-time">
+                  <span data-time="2026-01-15T14:08:44.703542Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read Design - On Time-855">
+                    Read Design - On Time
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Attack the Reference</td>
+                <td>10</td>
+                <td class="solve-time">
+                  <span data-time="2026-01-15T14:04:40.148758Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Boot the Reference - On Time-846">
+                    Boot the Reference - On Time
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Design Flags</td>
+                <td>50</td>
+                <td class="solve-time">
+                  <span data-time="2026-01-14T17:53:27.309742Z"></span>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>
+                  <a href="/challenges#Read the Rules - On Time-859">
+                    Read the Rules - On Time
+                  </a>
+                </td>
+                <td class="d-none d-md-block d-lg-block">Design Flags</td>
+                <td>50</td>
+                <td class="solve-time">
+                  <span data-time="2026-01-14T17:20:28.937997Z"></span>
+                </td>
+              </tr>
+            
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="row" x-data="UserGraphs">
+        <div class="col-md-6 d-none d-md-block d-lg-block py-4">
+          <div class="progress">
+            <div 
+              class="progress-bar" 
+              role="progressbar" 
+              :style="{ width: `${getSolvePercentage()}%`, 'background-color': 'rgb(0, 209, 64)' }" 
+            >
+            </div>
+            <div 
+              class="progress-bar" 
+              role="progressbar" 
+              :style="{ width: `${getFailPercentage()}%`, 'background-color': 'rgb(207, 38, 0)' }"
+            >
+            </div>
+          </div>
+          <div class="ps-2 float-start">
+            <svg height="16" width="16">
+              <circle cx="8" cy="8" r="5" fill="rgb(0, 209, 64)" />
+            </svg>
+            <small x-text="`Solves (${getSolvePercentage()}%)`"></small>
+          </div>
+          <div class="ps-2 float-start">
+            <svg height="16" width="16">
+              <circle cx="8" cy="8" r="5" fill="rgb(207, 38, 0)" />
+            </svg>
+            <small x-text="`Fails (${getFailPercentage()}%)`"></small>
+          </div>
+        </div>
+        <div class="col-md-6 d-none d-md-block d-lg-block py-4">
+          <div class="progress">
+            <template x-for="category in getCategoryBreakdown()" :key="category.name">
+              <div 
+                class="progress-bar" 
+                role="progressbar" 
+                :style="{ width: `${category.percent}%`, 'background-color': category.color }"
+              >
+              </div>
+            </template>
+          </div>
+          <template x-for="category in getCategoryBreakdown()" :key="category.name">
+            <div class="ps-2 float-start">
+              <svg height="16" width="16">
+                <circle cx="8" cy="8" r="5" :fill="category.color" />
+              </svg>
+              <small x-text="`${category.name} (${category.percent}%)`"></small>
+            </div>
+          </template>
+        </div>
+
+        <br class="clearfix">
+
+        <div class="col-md-12 d-none d-md-block d-lg-block py-4">
+          <div id="score-graph" x-ref="scoregraph" class="w-100 d-flex align-items-center">
+            <div class="text-center w-100">
+              <i class="fas fa-circle-notch fa-spin fa-3x fa-fw spinner"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+
+</main>
+
+
+<div 
+    id="ctfdio-snackbar-email-nudge"
+    x-data 
+    x-show="window.init.userId && !window.init.userVerified && localStorage.getItem('remind_email_verify') != window.init.userId && (!['/team', '/teams/join', '/teams/new'].includes(window.location.pathname) || window.init.teamId != null)"
+    class="alert alert-info alert-dismissible col-md-4 col-10 position-fixed text-center m-0 ctfdio-email-nudge" 
+    style="bottom: 45px; left: 50%; transform: translateX(-50%); z-index: 1040; display: none;" 
+    role="alert"
+>
+  <small>
+    <strong>Email Unconfirmed</strong><br>
+    <span>To confirm your email address please <a href="/confirm?flow=init">click here</a>.</span>
+  </small>
+  <button type="button" class="btn-close" @click="localStorage.setItem('remind_email_verify', window.init.userId); $el.parentElement.style.display = 'none';" aria-label="Close"></button>
+</div>
+
+
+<footer class="footer">
+  <div class="container text-center">
+    <a href="https://ctfd.io" class="text-secondary">
+      <small class="text-muted">
+        Powered by CTFd
+      </small>
+    </a>
+  </div>
+</footer>
+
+<div x-data>
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div x-ref="toast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+      <div class="toast-header">
+        <strong class="me-auto" x-text="$store.toast.title"></strong>
+        <small>just now</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body" x-html="$store.toast.html">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div x-data>
+  <div class="modal fade" x-ref="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" x-text="$store.modal.title"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p x-html="$store.modal.html"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Got it!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <script>
+      window.USER = {"account_id": 411, "id": 411, "name": "University of Trento - Trento", "type": "user"};
+  </script>
+
+  <script type="module"  src="https://cdn.cloud.ctfd.io/ectf/themes/core/static/assets/index.94b01c79.js"></script><script type="module"  src="https://cdn.cloud.ctfd.io/ectf/themes/core/static/assets/userscore.8adb2b33.js"></script><script type="module"  src="https://cdn.cloud.ctfd.io/ectf/themes/core/static/assets/index.1cf73b05.js"></script><script type="module"  src="https://cdn.cloud.ctfd.io/ectf/themes/core/static/assets/echarts.128204f2.js"></script><script type="module"  src="https://cdn.cloud.ctfd.io/ectf/themes/core/static/assets/users_public.ce92aae8.js"></script>
+
+
+<script defer src="https://cdn.cloud.ctfd.io/ectf/static/recaptcha.js?t=adf950e6"></script>
+<script defer src="https://www.google.com/recaptcha/api.js"></script>
+
+
+</body>
+</html>
